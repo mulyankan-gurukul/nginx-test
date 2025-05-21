@@ -1,13 +1,16 @@
 FROM nginx:latest
 
-# Copy the public directory to the container
+# Create necessary directories
+RUN mkdir -p /var/www/public /etc/nginx/ssl
+
+# Copy static files to serve
 COPY ./loginm/public /var/www/public
 
-# Copy the NGINX configuration file
+# Copy the NGINX configuration
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 
-# Copy the SSL certificates directory
+# Copy SSL certificates
 COPY ./nginx/ssl /etc/nginx/ssl
 
-# Expose ports 80 and 443
+# Expose ports
 EXPOSE 80 443
