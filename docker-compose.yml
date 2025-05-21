@@ -5,6 +5,6 @@ services:
       - "5080:80"
       - "5443:443"
     volumes:
-      - ./loginm/public/test.html:/var/www/public/test.html
-      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+      - ./loginm/public:/var/www/public
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./nginx/ssl:/etc/nginx/ssl
