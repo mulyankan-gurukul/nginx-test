@@ -2,8 +2,8 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "8080:80"
-      - "8443:443"
+      - "5080:80"
+      - "5443:443"
     volumes:
       - ./loginm/public:/var/www/public
       - ./nginx/conf.d:/etc/nginx/conf.d
