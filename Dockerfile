@@ -1,18 +1,23 @@
 FROM nginx:latest
 
 # Create necessary directories
-RUN mkdir -p /var/www/public /etc/nginx/ssl
+RUN mkdir -p /var/www/public /etc/nginx/ssl && \
+    ls -ltra /var/www && \
+    ls -ltra /etc/nginx
 
 # Copy static files to serve
 COPY ./loginm/public /var/www/public
+RUN ls -ltra /var/www/public
 
-RUN mkdir -p nginx/conf.d
+RUN mkdir -p nginx/conf.d && ls -ltra nginx
 
 # Copy the NGINX configuration
 COPY ./nginx/default.conf /etc/nginx/conf.d/
+RUN ls -ltra /etc/nginx/conf.d
 
 # Copy SSL certificates
 COPY ./nginx/ssl /etc/nginx/ssl
+RUN ls -ltra /etc/nginx/ssl
 
 # Expose ports
 EXPOSE 80 443
