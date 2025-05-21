@@ -1,9 +1,9 @@
 services:
   nginx:
     image: nginx:latest
-    ports:
-      - "80:80"
-      - "443:443"
+    # ports:
+    #   # - "80:80"
+    #   # - "443:443"
     volumes:
       - ./loginm/public:/var/www/public
       - ./nginx/conf.d:/etc/nginx/conf.d
