@@ -7,7 +7,7 @@ RUN mkdir -p /var/www/public /etc/nginx/ssl
 COPY ./loginm/public /var/www/public
 
 # Copy the NGINX configuration
-COPY ./nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
+COPY ./nginx/conf.d /etc/nginx/conf.d
 
 # Copy SSL certificates
 COPY ./nginx/ssl /etc/nginx/ssl
