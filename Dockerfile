@@ -13,7 +13,9 @@ RUN ls -ltra /var/www/public
 
 # Copy the NGINX configuration
 COPY ./nginx/default.conf /etc/nginx/conf.d/
-RUN ls -ltra /etc/nginx/conf.d
+RUN ls -ltra /etc/nginx/conf.d && \
+    cat /etc/nginx/conf.d/default.conf
+
 
 # Copy SSL certificates
 COPY ./nginx/ssl /etc/nginx/ssl
