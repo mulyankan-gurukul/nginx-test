@@ -4,7 +4,8 @@ FROM nginx:latest
 RUN mkdir -p /var/www/public /etc/nginx/ssl && \
     ls -ltra /var/www && \
     ls -ltra /etc/nginx && \
-    ls -ltra /etc/nginx/conf.d
+    ls -ltra /etc/nginx/conf.d && \
+    cat /etc/nginx/conf.d/default.conf
 
 # Copy static files to serve
 COPY ./loginm/public /var/www/public
