@@ -1,25 +1,17 @@
-FROM nginx:latest
+FROM nginx:alpine
 
-# Create necessary directories
-RUN mkdir -p /var/www/public /etc/nginx/ssl && \
-    ls -ltra /var/www && \
-    ls -ltra /etc/nginx && \
-    ls -ltra /etc/nginx/conf.d && \
-    cat /etc/nginx/conf.d/default.conf
+# Create required dirs
+RUN mkdir -p /var/www/public /etc/nginx/ssl
 
-# Copy static files to serve
-COPY ./loginm/public /var/www/public
-RUN ls -ltra /var/www/public
+# Copy public HTML content
+COPY loginm/public /var/www/public
 
-# Copy the NGINX configuration
-COPY ./nginx/default.conf /etc/nginx/conf.d/
-RUN ls -ltra /etc/nginx/conf.d && \
-    cat /etc/nginx/conf.d/default.conf
+# Copy SSL certs
+COPY nginx/ssl /etc/nginx/ssl
 
+# Overwrite default Nginx config
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 
-# Copy SSL certificates
-COPY ./nginx/ssl /etc/nginx/ssl
-RUN ls -ltra /etc/nginx/ssl
-
-# Expose ports
 EXPOSE 80 443
+
+CMD ["nginx", "-g", "daemon off;"]
